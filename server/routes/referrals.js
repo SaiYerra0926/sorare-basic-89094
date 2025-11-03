@@ -369,9 +369,20 @@ router.get('/completed', async (req, res) => {
     
     const totalCount = parseInt(countResult.rows[0]?.total || '0') || 0;
     
+    // Ensure all IDs are proper integers (PostgreSQL may return BigInt)
+    const referrals = (result.rows || []).map(row => ({
+      ...row,
+      id: typeof row.id === 'bigint' ? Number(row.id) : (typeof row.id === 'string' ? parseInt(row.id, 10) : row.id)
+    }));
+    
+    console.log('Returning referrals:', referrals.length);
+    if (referrals.length > 0) {
+      console.log('First referral ID:', referrals[0].id, 'Type:', typeof referrals[0].id);
+    }
+    
     res.json({
       success: true,
-      data: result.rows || [],
+      data: referrals,
       pagination: {
         total: totalCount,
         page: validPage,

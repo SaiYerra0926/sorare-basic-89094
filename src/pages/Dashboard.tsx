@@ -96,11 +96,13 @@ const Dashboard = () => {
   // Fetch completed referrals count
   useEffect(() => {
     fetchCompletedCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetch completed referrals when filters change
   useEffect(() => {
     fetchCompletedReferrals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, search, startDate, endDate]);
 
   const fetchCompletedCount = async () => {
@@ -138,19 +140,24 @@ const Dashboard = () => {
 
       if (response.success && response.data) {
         const referrals = Array.isArray(response.data) ? response.data : [];
-        // Log first referral to debug ID format
-        if (referrals.length > 0) {
-          console.log('Fetched referrals:', referrals.length);
-          console.log('First referral data:', referrals[0]);
-          console.log('First referral ID:', referrals[0].id, 'Type:', typeof referrals[0].id);
+        // Ensure all referrals have valid data
+        const validReferrals = referrals.filter(ref => ref && ref.id != null);
+        
+        if (validReferrals.length > 0) {
+          console.log('Fetched referrals:', validReferrals.length);
         }
-        setCompletedReferrals(referrals);
+        setCompletedReferrals(validReferrals);
         if (response.pagination) {
           setTotalPages(response.pagination.totalPages || 1);
           setTotal(response.pagination.total || 0);
+        } else {
+          setTotalPages(1);
+          setTotal(validReferrals.length);
         }
       } else {
         setCompletedReferrals([]);
+        setTotalPages(1);
+        setTotal(0);
       }
     } catch (error: any) {
       console.error('Error fetching completed referrals:', error);
@@ -171,31 +178,47 @@ const Dashboard = () => {
   };
 
   const handleNameClick = async (referralId: number | string | null | undefined) => {
-    // Convert referral ID to number if it's a string
+    // Convert referral ID to number - handle all possible types
     let numericId: number;
     
-    if (typeof referralId === 'string') {
-      numericId = parseInt(referralId, 10);
-    } else if (typeof referralId === 'number') {
-      numericId = referralId;
-    } else {
-      console.error('Invalid referral ID type:', typeof referralId, referralId);
+    try {
+      if (referralId === null || referralId === undefined) {
+        throw new Error('Referral ID is null or undefined');
+      }
+      
+      if (typeof referralId === 'string') {
+        const parsed = parseInt(referralId.trim(), 10);
+        if (isNaN(parsed)) {
+          throw new Error(`Cannot parse string ID: "${referralId}"`);
+        }
+        numericId = parsed;
+      } else if (typeof referralId === 'number') {
+        numericId = referralId;
+      } else if (typeof referralId === 'bigint') {
+        numericId = Number(referralId);
+      } else {
+        // Try to convert to string then parse
+        const stringId = String(referralId);
+        const parsed = parseInt(stringId, 10);
+        if (isNaN(parsed)) {
+          throw new Error(`Invalid ID type: ${typeof referralId}, value: ${referralId}`);
+        }
+        numericId = parsed;
+      }
+      
+      // Final validation
+      if (!Number.isInteger(numericId) || numericId <= 0 || !isFinite(numericId)) {
+        throw new Error(`Invalid numeric ID: ${numericId}`);
+      }
+    } catch (error: any) {
+      console.error('ID conversion error:', error.message, 'Original ID:', referralId, 'Type:', typeof referralId);
       toast.error('Invalid referral ID', {
-        description: 'The referral ID is invalid. Please try again.',
+        description: `Failed to process referral ID: ${referralId}`,
       });
       return;
     }
     
-    // Validate referral ID
-    if (!numericId || isNaN(numericId) || !isFinite(numericId) || numericId <= 0) {
-      console.error('Invalid referral ID after conversion:', numericId, 'Original:', referralId);
-      toast.error('Invalid referral ID', {
-        description: 'The referral ID is invalid. Please try again.',
-      });
-      return;
-    }
-    
-    console.log('Fetching referral details for ID:', numericId);
+    console.log('Fetching referral details for ID:', numericId, '(converted from:', referralId, typeof referralId, ')');
     setLoadingDetails(true);
     setShowDetailsDialog(true);
     try {
@@ -219,16 +242,18 @@ const Dashboard = () => {
     setPage(1);
   };
 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return 'N/A';
+  const formatDate = (dateString?: string | null) => {
+    if (!dateString || dateString === 'null' || dateString === 'undefined') return 'N/A';
     try {
-      return new Date(dateString).toLocaleDateString('en-US', {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return 'N/A';
+      return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
       });
     } catch {
-      return dateString;
+      return dateString || 'N/A';
     }
   };
 
@@ -411,17 +436,13 @@ const Dashboard = () => {
                                 console.log('Row clicked, referral data:', referral);
                                 console.log('Referral ID:', referral.id, 'Type:', typeof referral.id);
                                 
-                                // Convert to number if it's a string
-                                const idToCheck = typeof referral.id === 'string' 
-                                  ? parseInt(referral.id, 10) 
-                                  : referral.id;
-                                
-                                if (idToCheck && !isNaN(idToCheck) && isFinite(idToCheck) && idToCheck > 0) {
-                                  handleNameClick(idToCheck);
+                                // Always pass the ID as-is, let handleNameClick handle conversion
+                                if (referral.id !== null && referral.id !== undefined) {
+                                  handleNameClick(referral.id);
                                 } else {
-                                  console.error('Invalid referral ID in row click:', referral.id, 'Converted:', idToCheck);
+                                  console.error('Referral ID is null or undefined');
                                   toast.error('Invalid referral ID', {
-                                    description: `Cannot load details for this referral. ID: ${referral.id}`,
+                                    description: 'Referral ID is missing. Cannot load details.',
                                   });
                                 }
                               }}
@@ -568,18 +589,14 @@ const Dashboard = () => {
                         console.log('Dialog name clicked, referral data:', referral);
                         console.log('Referral ID:', referral.id, 'Type:', typeof referral.id);
                         
-                        // Convert to number if it's a string
-                        const idToCheck = typeof referral.id === 'string' 
-                          ? parseInt(referral.id, 10) 
-                          : referral.id;
-                        
-                        if (idToCheck && !isNaN(idToCheck) && isFinite(idToCheck) && idToCheck > 0) {
+                        // Always pass the ID as-is, let handleNameClick handle conversion
+                        if (referral.id !== null && referral.id !== undefined) {
                           setShowNamesDialog(false);
-                          handleNameClick(idToCheck);
+                          handleNameClick(referral.id);
                         } else {
-                          console.error('Invalid referral ID in dialog click:', referral.id, 'Converted:', idToCheck);
+                          console.error('Referral ID is null or undefined');
                           toast.error('Invalid referral ID', {
-                            description: `Cannot load details for this referral. ID: ${referral.id}`,
+                            description: 'Referral ID is missing. Cannot load details.',
                           });
                         }
                       }}
@@ -640,7 +657,7 @@ const Dashboard = () => {
                       <CardContent className="grid grid-cols-2 gap-4">
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Name</p>
-                          <p className="font-semibold">{selectedReferral.personalInfo.name}</p>
+                          <p className="font-semibold">{selectedReferral.personalInfo.name || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Pronouns</p>
@@ -652,11 +669,11 @@ const Dashboard = () => {
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Gender</p>
-                          <p>{selectedReferral.personalInfo.gender}</p>
+                          <p>{selectedReferral.personalInfo.gender || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Race</p>
-                          <p>{selectedReferral.personalInfo.race}</p>
+                          <p>{selectedReferral.personalInfo.race || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Email</p>
@@ -692,7 +709,7 @@ const Dashboard = () => {
                       <CardContent className="grid grid-cols-2 gap-4">
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Name</p>
-                          <p className="font-semibold">{selectedReferral.referrer.name}</p>
+                          <p className="font-semibold">{selectedReferral.referrer.name || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Title</p>
@@ -742,15 +759,15 @@ const Dashboard = () => {
                       <CardContent className="space-y-3">
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Drug of Choice</p>
-                          <p>{selectedReferral.screeningInfo.drug_of_choice || 'N/A'}</p>
+                          <p className="whitespace-pre-wrap">{selectedReferral.screeningInfo.drug_of_choice || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Medical Conditions</p>
-                          <p>{selectedReferral.screeningInfo.medical_conditions || 'N/A'}</p>
+                          <p className="whitespace-pre-wrap">{selectedReferral.screeningInfo.medical_conditions || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-muted-foreground">Mental Health Conditions</p>
-                          <p>{selectedReferral.screeningInfo.mental_health_conditions || 'N/A'}</p>
+                          <p className="whitespace-pre-wrap">{selectedReferral.screeningInfo.mental_health_conditions || 'N/A'}</p>
                         </div>
                       </CardContent>
                     </Card>
