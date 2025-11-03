@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# The Worx - Recovery Support Services
 
-## Project info
+A professional web application for The Worx recovery support services, providing referral forms, resources, and community information for individuals and families in Allegheny County.
 
-**URL**: https://lovable.dev/projects/2cfc3c5b-6a28-4404-a9cf-c304d5ab54fc
+## Features
 
-## How can I edit this code?
+- **Referral Forms**: Comprehensive referral forms for recovery support services
+- **Consent Management**: Consent form for data collection and processing
+- **Handbook**: Complete guide to The Worx services and resources
+- **Multiple Forms**: Form1, Form2, Form3, Form4, and Form5 for various services
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Dark/Light Mode**: Professional theming with dark and light mode support
+- **Accessibility**: WCAG compliant with proper contrast ratios
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+- **React 18**: Modern UI library
+- **TypeScript**: Type-safe development
+- **Vite**: Fast build tool and development server
+- **React Router**: Client-side routing
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: High-quality UI components
+- **React Hook Form**: Form validation and management
+- **Zod**: Schema validation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2cfc3c5b-6a28-4404-a9cf-c304d5ab54fc) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd sorare-basic-89094
+```
 
-Follow these steps:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+To build the application for production:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+The production build will be in the `dist` directory.
 
-This project is built with:
+To preview the production build:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+npm run preview
+```
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/2cfc3c5b-6a28-4404-a9cf-c304d5ab54fc) and click on Share -> Publish.
+```
+src/
+├── components/        # Reusable UI components
+├── pages/            # Page components
+├── data/            # Data configuration files
+├── lib/             # Utility functions and API clients
+├── assets/          # Static assets (images, etc.)
+└── index.css        # Global styles
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Available Routes
 
-Yes, you can!
+- `/` - Home page with forms listing
+- `/beginners-guide` - Complete guide about The Worx
+- `/referrals` - Recovery referral form
+- `/handbook` - Comprehensive handbook
+- `/form1` - Form1
+- `/form2` - Form2
+- `/form3` - Form3
+- `/form4` - Form4
+- `/form5` - Form5
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Development
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Code Style
+
+- ESLint is configured for code quality
+- TypeScript strict mode enabled
+- Follow React best practices
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Environment Variables
+
+If needed, create a `.env` file in the root directory for environment-specific configuration.
+
+## License
+
+© 2025 The Worx. All rights reserved.
+
+## Contact
+
+For questions or support, please contact:
+- Email: info@theworx.us
+- Address: 300 Catherine Street, 1st Floor McKees Rocks, PA 15136

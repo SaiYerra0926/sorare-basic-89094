@@ -1,7 +1,7 @@
-import { SorareBasicLanding } from '@/components/SorareBasicLanding';
+import { WorxLanding } from '@/components/WorxLanding';
 
 const Index = () => {
-  return <SorareBasicLanding />;
+  return <WorxLanding />;
 };
 
 export default Index;
