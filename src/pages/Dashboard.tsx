@@ -266,28 +266,28 @@ const Dashboard = () => {
 
       <div className="min-h-screen bg-background w-full flex flex-col">
         {/* Navigation */}
-        <nav className="sticky top-0 z-50 bg-background/95 dark:bg-background/98 backdrop-blur-md border-b border-border/50 dark:border-border/70 shadow-sm">
+        <nav className="sticky top-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-xl border-b border-border/40 dark:border-border/60 shadow-lg shadow-black/5 dark:shadow-black/20">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
-              <div className="flex items-center gap-6">
-                <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                  <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto" />
+              <div className="flex items-center gap-4 lg:gap-6">
+                <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
+                  <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto drop-shadow-md" />
                 </Link>
                 <Link to="/">
-                  <Button variant="ghost" size="lg" className="gap-2 font-medium">
+                  <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent/50 transition-all duration-200 hover:scale-105">
                     <Home size={18} />
-                    Home
+                    <span className="hidden sm:inline">Home</span>
                   </Button>
                 </Link>
                 <Link to="/beginners-guide">
-                  <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent">
+                  <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent/50 transition-all duration-200 hover:scale-105">
                     <BookOpen size={18} />
-                    Beginners Guide
+                    <span className="hidden sm:inline">Beginners Guide</span>
                   </Button>
                 </Link>
-                <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent">
+                <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent/50 transition-all duration-200 hover:scale-105 bg-accent/30">
                   <BarChart3 size={18} />
-                  Dashboard
+                  <span className="hidden sm:inline">Dashboard</span>
                 </Button>
               </div>
               <ThemeToggle />
@@ -295,39 +295,54 @@ const Dashboard = () => {
           </div>
         </nav>
 
-        <main className="container mx-auto px-6 lg:px-8 py-8 flex-1">
+        <main className="container mx-auto px-6 lg:px-8 py-8 md:py-12 flex-1 animate-fadeIn">
+          {/* Page Header */}
+          <div className="mb-8 md:mb-12 text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent dark:from-primary dark:via-purple-400 dark:to-pink-400">
+              Dashboard
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Monitor and manage completed referral forms with comprehensive analytics
+            </p>
+          </div>
+
           {/* Completed Referrals Count Card */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
             <Card 
-              className="border-2 border-primary/20 dark:border-primary/30 shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-primary/10 via-purple-500/10 to-pink-500/10 cursor-pointer transform hover:scale-105"
+              className="border-2 border-primary/30 dark:border-primary/40 shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-primary/15 via-purple-500/15 to-pink-500/15 dark:from-primary/20 dark:via-purple-500/20 dark:to-pink-500/20 cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1 rounded-2xl overflow-hidden relative group"
               onClick={handleCountClick}
             >
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-3 text-2xl">
-                  <div className="p-3 bg-primary rounded-xl shadow-lg">
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <CardHeader className="pb-3 relative z-10">
+                <CardTitle className="flex items-center gap-3 text-xl md:text-2xl">
+                  <div className="p-3 bg-gradient-to-br from-primary to-primary/80 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <Users className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  Completed Referrals
+                  <span className="font-extrabold">Completed Referrals</span>
                 </CardTitle>
-                <CardDescription>Total forms with completed signatures</CardDescription>
+                <CardDescription className="text-sm md:text-base">Total forms with completed signatures</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="text-5xl font-bold text-primary mb-2">{completedCount}</div>
-                <p className="text-sm text-muted-foreground">Click to view details</p>
+              <CardContent className="relative z-10">
+                <div className="text-5xl md:text-6xl font-extrabold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">{completedCount}</div>
+                <p className="text-sm md:text-base text-muted-foreground font-medium">Click to view details</p>
               </CardContent>
             </Card>
 
             {/* Search and Filter Card */}
-            <Card className="lg:col-span-2 border-border/50 dark:border-border/70 shadow-lg">
+            <Card className="lg:col-span-2 border-border/50 dark:border-border/70 shadow-lg rounded-2xl bg-card/80 dark:bg-card/90 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span className="flex items-center gap-2">
-                    <Search className="h-5 w-5" />
+                <CardTitle className="flex items-center justify-between flex-wrap gap-4">
+                  <span className="flex items-center gap-2 text-lg md:text-xl font-bold">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <Search className="h-5 w-5 text-primary" />
+                    </div>
                     Search & Filter
                   </span>
                   <Sheet open={showFilters} onOpenChange={setShowFilters}>
                     <SheetTrigger asChild>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105">
                         <Filter className="h-4 w-4 mr-2" />
                         Filters
                       </Button>
@@ -395,10 +410,10 @@ const Dashboard = () => {
           </div>
 
           {/* Completed Referrals Table */}
-          <Card className="border-border/50 dark:border-border/70 shadow-lg">
-            <CardHeader>
-              <CardTitle>Completed Referrals</CardTitle>
-              <CardDescription>
+          <Card className="border-border/50 dark:border-border/70 shadow-lg rounded-2xl bg-card/80 dark:bg-card/90 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+              <CardTitle className="text-2xl md:text-3xl font-extrabold">Completed Referrals</CardTitle>
+              <CardDescription className="text-base">
                 Showing {completedReferrals.length} of {total} completed referral forms
               </CardDescription>
             </CardHeader>
@@ -431,7 +446,7 @@ const Dashboard = () => {
                           {completedReferrals.map((referral) => (
                             <tr
                               key={referral.id}
-                              className="border-b hover:bg-muted/50 transition-colors cursor-pointer"
+                              className="border-b hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-200 cursor-pointer group hover:shadow-md"
                               onClick={() => {
                                 console.log('Row clicked, referral data:', referral);
                                 console.log('Referral ID:', referral.id, 'Type:', typeof referral.id);
@@ -447,10 +462,10 @@ const Dashboard = () => {
                                 }
                               }}
                             >
-                              <td className="px-4 py-3">
-                                <div className="font-medium">{referral.name || 'N/A'}</div>
+                              <td className="px-4 py-4">
+                                <div className="font-bold text-base group-hover:text-primary transition-colors duration-200">{referral.name || 'N/A'}</div>
                                 {referral.birth_date && (
-                                  <div className="text-xs text-muted-foreground">
+                                  <div className="text-xs text-muted-foreground mt-1">
                                     DOB: {formatDate(referral.birth_date)}
                                   </div>
                                 )}
@@ -492,8 +507,8 @@ const Dashboard = () => {
                                   <div className="text-xs text-muted-foreground">{referral.referrer_agency}</div>
                                 )}
                               </td>
-                              <td className="px-4 py-3 text-right">
-                                <Button variant="ghost" size="sm">
+                              <td className="px-4 py-4 text-right">
+                                <Button variant="ghost" size="sm" className="group-hover:bg-primary/10 group-hover:text-primary transition-all duration-200">
                                   View Details
                                 </Button>
                               </td>
@@ -553,20 +568,30 @@ const Dashboard = () => {
         </main>
 
         {/* Footer */}
-        <footer className="bg-background dark:bg-background/98 border-t border-border/50 dark:border-border/70 py-8 mt-auto">
-          <div className="container mx-auto px-6 lg:px-8 text-center">
-            <p className="text-sm text-foreground/70 dark:text-foreground/80">
-              © {new Date().getFullYear()} The Worx. All rights reserved.
-            </p>
+        <footer className="bg-gradient-to-t from-background via-background to-background/95 dark:from-background dark:via-background dark:to-background/98 border-t border-border/40 dark:border-border/60 py-10 md:py-12 mt-auto">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="text-center space-y-4">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <img src={worxLogo} alt="The Worx Logo" className="h-8 w-auto opacity-70" />
+              </div>
+              <p className="text-sm md:text-base text-foreground/60 dark:text-foreground/70 font-medium">
+                © {new Date().getFullYear()} The Worx. All rights reserved.
+              </p>
+              <p className="text-xs text-foreground/50 dark:text-foreground/60">
+                Supporting recovery journeys with comprehensive care and community partnerships
+              </p>
+            </div>
           </div>
         </footer>
 
         {/* Names Dialog - Shows when clicking on count */}
         <Dialog open={showNamesDialog} onOpenChange={setShowNamesDialog}>
-          <DialogContent className="max-w-2xl max-h-[80vh]">
+          <DialogContent className="max-w-2xl max-h-[80vh] rounded-2xl">
             <DialogHeader>
-              <DialogTitle className="text-2xl">Completed Referrals ({completedCount})</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Completed Referrals ({completedCount})
+              </DialogTitle>
+              <DialogDescription className="text-base">
                 Click on a name to view full details
               </DialogDescription>
             </DialogHeader>
@@ -600,7 +625,7 @@ const Dashboard = () => {
                           });
                         }
                       }}
-                      className="p-4 rounded-lg border border-border hover:bg-primary/10 hover:border-primary/50 cursor-pointer transition-all"
+                      className="p-4 rounded-xl border border-border/50 hover:bg-gradient-to-r hover:from-primary/10 hover:via-purple-500/10 hover:to-pink-500/10 hover:border-primary/50 cursor-pointer transition-all duration-300 hover:shadow-md hover:scale-[1.02]"
                     >
                       <div className="font-semibold text-lg">{referral.name || 'N/A'}</div>
                       <div className="text-sm text-muted-foreground mt-1">
@@ -631,10 +656,12 @@ const Dashboard = () => {
 
         {/* Details Dialog - Shows full referral details */}
         <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
-          <DialogContent className="max-w-4xl max-h-[90vh]">
+          <DialogContent className="max-w-4xl max-h-[90vh] rounded-2xl">
             <DialogHeader>
-              <DialogTitle className="text-2xl">Referral Details</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Referral Details
+              </DialogTitle>
+              <DialogDescription className="text-base">
                 Complete information for referral #{selectedReferral?.referral?.id}
               </DialogDescription>
             </DialogHeader>
@@ -647,10 +674,12 @@ const Dashboard = () => {
                 <div className="space-y-6">
                   {/* Personal Information */}
                   {selectedReferral.personalInfo && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <User className="h-5 w-5 text-primary" />
+                    <Card className="rounded-xl border-2 border-primary/20 dark:border-primary/30 shadow-lg">
+                      <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+                        <CardTitle className="flex items-center gap-2 text-xl font-bold">
+                          <div className="p-2 bg-primary rounded-lg">
+                            <User className="h-5 w-5 text-primary-foreground" />
+                          </div>
                           Personal Information
                         </CardTitle>
                       </CardHeader>
@@ -702,9 +731,9 @@ const Dashboard = () => {
 
                   {/* Referrer Information */}
                   {selectedReferral.referrer && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Referrer Information</CardTitle>
+                    <Card className="rounded-xl border-2 border-primary/20 dark:border-primary/30 shadow-lg">
+                      <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+                        <CardTitle className="text-xl font-bold">Referrer Information</CardTitle>
                       </CardHeader>
                       <CardContent className="grid grid-cols-2 gap-4">
                         <div>
@@ -729,9 +758,9 @@ const Dashboard = () => {
 
                   {/* Emergency Contact */}
                   {selectedReferral.emergencyContact && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Emergency Contact</CardTitle>
+                    <Card className="rounded-xl border-2 border-primary/20 dark:border-primary/30 shadow-lg">
+                      <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+                        <CardTitle className="text-xl font-bold">Emergency Contact</CardTitle>
                       </CardHeader>
                       <CardContent className="grid grid-cols-2 gap-4">
                         <div>
@@ -752,9 +781,9 @@ const Dashboard = () => {
 
                   {/* Screening Information */}
                   {selectedReferral.screeningInfo && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Screening Information</CardTitle>
+                    <Card className="rounded-xl border-2 border-primary/20 dark:border-primary/30 shadow-lg">
+                      <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+                        <CardTitle className="text-xl font-bold">Screening Information</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div>
@@ -775,9 +804,9 @@ const Dashboard = () => {
 
                   {/* Priority Populations */}
                   {selectedReferral.priorityPopulations && selectedReferral.priorityPopulations.length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Priority Populations</CardTitle>
+                    <Card className="rounded-xl border-2 border-primary/20 dark:border-primary/30 shadow-lg">
+                      <CardHeader className="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 dark:from-primary/10 dark:via-purple-500/10 dark:to-pink-500/10">
+                        <CardTitle className="text-xl font-bold">Priority Populations</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="flex flex-wrap gap-2">
