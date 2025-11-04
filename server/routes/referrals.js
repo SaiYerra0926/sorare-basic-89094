@@ -228,8 +228,7 @@ router.get('/count/completed', async (req, res) => {
     const result = await pool.query(
       `SELECT COUNT(DISTINCT r.id) as count
        FROM referrals r
-       INNER JOIN applicant_signatures aps ON r.id = aps.referral_id
-       WHERE aps.signature IS NOT NULL AND aps.signature != ''`
+       INNER JOIN applicant_signatures aps ON r.id = aps.referral_id`
     );
     
     res.json({
@@ -267,20 +266,36 @@ router.get('/completed', async (req, res) => {
     const offset = Math.max(0, (validPage - 1) * validLimit);
     
     let query = `
-      SELECT r.id, r.referral_date, r.created_at,
+      SELECT r.id, r.referral_date, r.services, r.created_at,
              pi.name, 
+             pi.pronouns,
+             pi.legal_name,
+             pi.birth_date,
+             pi.is_homeless,
              pi.address, 
-             pi.cell_phone as phone, 
+             pi.city_state_zip,
+             pi.home_phone,
+             pi.cell_phone as phone,
+             pi.cell_phone,
+             pi.ssn,
              pi.email, 
+             pi.medical_assistance_id,
              pi.medical_assistance_provider,
              pi.gender,
-             ref.name as referrer_name, ref.agency as referrer_agency,
+             pi.gender_other,
+             pi.race,
+             pi.race_other,
+             ref.name as referrer_name, 
+             ref.title as referrer_title,
+             ref.agency as referrer_agency,
+             ref.phone as referrer_phone,
+             ref.email as referrer_email,
              aps.signature_date as completed_date
       FROM referrals r
       INNER JOIN applicant_signatures aps ON r.id = aps.referral_id
       LEFT JOIN personal_info pi ON r.id = pi.referral_id
       LEFT JOIN referrers ref ON r.id = ref.referral_id
-      WHERE aps.signature IS NOT NULL AND aps.signature != ''
+      WHERE 1=1
     `;
     
     const params = [];
@@ -335,7 +350,7 @@ router.get('/completed', async (req, res) => {
       INNER JOIN applicant_signatures aps ON r.id = aps.referral_id
       LEFT JOIN personal_info pi ON r.id = pi.referral_id
       LEFT JOIN referrers ref ON r.id = ref.referral_id
-      WHERE aps.signature IS NOT NULL AND aps.signature != ''
+      WHERE 1=1
     `;
     
     const countParams = [];
