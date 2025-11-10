@@ -10,11 +10,10 @@ export const tools = [{
 }, {
   name: 'Consent Form',
   description: 'Review and accept the consent form for data collection and processing to use our services.',
-  url: '#consent',
+  url: '/consent-form',
   icon: FileText,
   iconColor: 'bg-pink-500',
-  isInternal: true,
-  isConsentForm: true
+  isInternal: true
 }, {
   name: 'Handbook Form',
   description: 'Access our comprehensive handbook with resources, guidelines, and information for recovery support services.',

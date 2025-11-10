@@ -16,22 +16,43 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-background w-full flex flex-col">
+    <div 
+      className="min-h-screen w-full flex flex-col"
+      style={{
+        backgroundColor: '#FFFEF7'
+      }}
+    >
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-xl border-b border-border/40 dark:border-border/60 shadow-lg shadow-black/5 dark:shadow-black/20">
+      <nav 
+        className="sticky top-0 z-50"
+        style={{
+          backgroundColor: '#FFFEF7',
+          borderBottom: 'none'
+        }}
+      >
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center gap-4 lg:gap-6">
-              <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-6 lg:gap-8">
+              <Link to="/" className="flex items-center gap-3">
+                <span 
+                  className="text-xl font-normal"
+                  style={{ 
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    color: '#36454F'
+                  }}
+                >
                   The Worx
                 </span>
               </Link>
-              <Link to="/">
-                <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent/50 transition-all duration-200 hover:scale-105">
-                  <Home size={18} />
-                  <span className="hidden sm:inline">Home</span>
-                </Button>
+              <Link 
+                to="/" 
+                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                style={{ 
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  color: '#36454F'
+                }}
+              >
+                Home
               </Link>
             </div>
           </div>

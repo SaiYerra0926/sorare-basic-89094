@@ -277,30 +277,52 @@ const Dashboard = () => {
       <div 
         className="min-h-screen w-full flex flex-col"
         style={{
-          background: '#FDFBEF'
+          background: '#FFFEF7'
         }}
       >
         {/* Navigation */}
-        <nav className="sticky top-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-xl border-b border-border/40 dark:border-border/60 shadow-lg shadow-black/5 dark:shadow-black/20">
+        <nav 
+          className="sticky top-0 z-50"
+          style={{
+            backgroundColor: '#FFFEF7',
+            borderBottom: 'none'
+          }}
+        >
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20">
-              <div className="flex items-center gap-4 lg:gap-6">
-                <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
-                  <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto drop-shadow-md" />
+            <div className="flex items-center justify-between h-16">
+              <div className="flex items-center gap-6 lg:gap-8">
+                <Link to="/" className="flex items-center gap-3">
+                  <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto" />
                 </Link>
-                <Link to="/">
-                  <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                    <span>Home</span>
-                  </Button>
+                <Link 
+                  to="/" 
+                  className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                  style={{ 
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    color: '#36454F'
+                  }}
+                >
+                  Home
                 </Link>
-                <Link to="/beginners-guide">
-                  <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                    <span>Beginners Guide</span>
-                  </Button>
+                <Link 
+                  to="/beginners-guide"
+                  className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                  style={{ 
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    color: '#36454F'
+                  }}
+                >
+                  Beginners Guide
                 </Link>
-                <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200 bg-accent/30" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                  <span>Dashboard</span>
-                </Button>
+                <span 
+                  className="text-base font-normal"
+                  style={{ 
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    color: '#36454F'
+                  }}
+                >
+                  Dashboard
+                </span>
               </div>
             </div>
           </div>

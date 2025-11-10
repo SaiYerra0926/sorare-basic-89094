@@ -1,62 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ConsentForm } from './ConsentForm';
 import { tools } from '@/data/tools';
-import { toast } from 'sonner';
 import worxLogo from '@/assets/Worx-logo (2).png';
 import worxBannerLogo from '@/assets/Worx-logo (2).png';
 
 export const WorxLanding = () => {
-  const [showConsentForm, setShowConsentForm] = useState(false);
-
-  const handleConsentFormClick = () => {
-    setShowConsentForm(true);
-  };
-
-  const handleConsentAccept = () => {
-    localStorage.setItem('worx-consent-accepted', 'true');
-    localStorage.setItem('worx-consent-date', new Date().toISOString());
-    setShowConsentForm(false);
-    toast.success('Consent recorded', {
-      description: 'Thank you for accepting the consent form.',
-    });
-  };
-
-  const handleConsentDecline = () => {
-    setShowConsentForm(false);
-    toast.info('Consent declined', {
-      description: 'You can review and accept the consent form anytime.',
-    });
-  };
-
-  return <div className="min-h-screen bg-background w-full flex flex-col">
-      <ConsentForm
-        open={showConsentForm}
-        onOpenChange={setShowConsentForm}
-        onAccept={handleConsentAccept}
-        onDecline={handleConsentDecline}
-      />
+  return <div 
+    className="min-h-screen w-full flex flex-col"
+    style={{
+      backgroundColor: '#FFFEF7'
+    }}
+  >
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-xl border-b border-border/40 dark:border-border/60 shadow-lg shadow-black/5 dark:shadow-black/20">
+      <nav 
+        className="sticky top-0 z-50"
+        style={{
+          backgroundColor: '#FFFEF7',
+          borderBottom: 'none'
+        }}
+      >
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center gap-4 lg:gap-6">
-              <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
-                <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto drop-shadow-md" />
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-6 lg:gap-8">
+              <Link to="/" className="flex items-center gap-3">
+                <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto" />
               </Link>
-              <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                <span>Home</span>
-              </Button>
-              <Link to="/beginners-guide">
-                <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                  <span>Beginners Guide</span>
-                </Button>
+              <Link 
+                to="/" 
+                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                style={{ 
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  color: '#36454F'
+                }}
+              >
+                Home
               </Link>
-              <Link to="/dashboard">
-                <Button variant="ghost" size="lg" className="font-medium hover:bg-accent/50 transition-all duration-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
-                  <span>Dashboard</span>
-                </Button>
+              <Link 
+                to="/beginners-guide"
+                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                style={{ 
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  color: '#36454F'
+                }}
+              >
+                Beginners Guide
+              </Link>
+              <Link 
+                to="/dashboard"
+                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                style={{ 
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  color: '#36454F'
+                }}
+              >
+                Dashboard
               </Link>
             </div>
           </div>
@@ -85,7 +83,7 @@ export const WorxLanding = () => {
         </div>
         
         {/* Hero Content - Exact Match to Reference Image */}
-        <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center max-w-5xl">
+        <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center max-w-3xl">
           {/* Logo - Prominently Displayed */}
           <div className="flex justify-center mb-8 md:mb-12 relative">
             <img 
@@ -93,7 +91,7 @@ export const WorxLanding = () => {
               alt="The Worx Banner Logo" 
               className="w-full max-w-4xl h-auto rounded-2xl shadow-2xl relative z-10 transform hover:scale-[1.02] transition-transform duration-500"
               style={{
-                filter: 'drop-shadow(0 10px 40px rgba(0, 0, 0, 0.3))'
+                filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3))'
               }}
             />
           </div>
@@ -103,7 +101,7 @@ export const WorxLanding = () => {
             className="text-sm md:text-base lg:text-lg text-white mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed"
             style={{
               fontFamily: "'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              fontWeight: 400,
+              fontWeight: 600,
               letterSpacing: '0.01em'
             }}
           >
@@ -139,17 +137,11 @@ export const WorxLanding = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
             {tools.map((tool, index) => {
               const IconComponent = tool.icon;
-              const handleClick = () => {
-                if (tool.isConsentForm) {
-                  handleConsentFormClick();
-                }
-              };
 
               const content = (
                 <div 
                   className="animate-fadeIn flex flex-col items-center cursor-pointer group"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={tool.isConsentForm ? handleClick : undefined}
                 >
                   {/* Rounded Square Card with Gradient - Professional Style */}
                   <div 
@@ -187,10 +179,6 @@ export const WorxLanding = () => {
                   </p>
                 </div>
               );
-
-              if (tool.isConsentForm) {
-                return <div key={tool.name}>{content}</div>;
-              }
 
               return (
                 <Link key={tool.name} to={tool.url || '#'}>

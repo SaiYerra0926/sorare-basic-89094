@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BeginnersGuide from "./pages/BeginnersGuide";
 import ReferralForms from "./pages/ReferralForms";
+import ConsentForm from "./pages/ConsentForm";
 import Handbook from "./pages/Handbook";
 import Form1 from "./pages/Form1";
 import Form2 from "./pages/Form2";
@@ -20,7 +21,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/beginners-guide" element={<BeginnersGuide />} />
             <Route path="/referrals" element={<ReferralForms />} />
+            <Route path="/consent-form" element={<ConsentForm />} />
             <Route path="/handbook" element={<Handbook />} />
             <Route path="/form1" element={<Form1 />} />
             <Route path="/form2" element={<Form2 />} />
