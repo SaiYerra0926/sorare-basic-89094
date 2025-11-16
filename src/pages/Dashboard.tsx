@@ -323,6 +323,16 @@ const Dashboard = () => {
                 >
                   Dashboard
                 </span>
+                <Link 
+                  to="/billing"
+                  className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
+                  style={{ 
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    color: '#36454F'
+                  }}
+                >
+                  Billing
+                </Link>
               </div>
             </div>
           </div>

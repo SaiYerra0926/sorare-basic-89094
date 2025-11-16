@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { tools } from '@/data/tools';
 import worxLogo from '@/assets/Worx-logo (2).png';
 import worxBannerLogo from '@/assets/Worx-logo (2).png';
+import { Navigation } from './Navigation';
 
 export const WorxLanding = () => {
   return <div 
@@ -13,53 +14,7 @@ export const WorxLanding = () => {
     }}
   >
       {/* Navigation */}
-      <nav 
-        className="sticky top-0 z-50"
-        style={{
-          backgroundColor: '#FFFEF7',
-          borderBottom: 'none'
-        }}
-      >
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-6 lg:gap-8">
-              <Link to="/" className="flex items-center gap-3">
-                <img src={worxLogo} alt="The Worx Logo" className="h-10 w-auto" />
-              </Link>
-              <Link 
-                to="/" 
-                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
-                style={{ 
-                  fontFamily: 'Arial, Helvetica, sans-serif',
-                  color: '#36454F'
-                }}
-              >
-                Home
-              </Link>
-              <Link 
-                to="/beginners-guide"
-                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
-                style={{ 
-                  fontFamily: 'Arial, Helvetica, sans-serif',
-                  color: '#36454F'
-                }}
-              >
-                Beginners Guide
-              </Link>
-              <Link 
-                to="/dashboard"
-                className="text-base font-normal no-underline hover:opacity-70 transition-opacity"
-                style={{ 
-                  fontFamily: 'Arial, Helvetica, sans-serif',
-                  color: '#36454F'
-                }}
-              >
-                Dashboard
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
       
       {/* Hero Section - Exact Match to Reference Image */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">

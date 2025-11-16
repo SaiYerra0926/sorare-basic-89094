@@ -5,13 +5,19 @@
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
-    "init-db": "node init-db.js"
+    "check-setup": "node check-setup.js",
+    "init-db": "node init-db.js",
+    "init-handbook-db": "node init-handbook-db.js",
+    "init-users-db": "node database/init-users-db.js",
+    "init-forms-db": "psql -U postgres -h localhost -p 5433 -d Worx -f database/all_forms_schema.sql"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
     "pg": "^8.11.3",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

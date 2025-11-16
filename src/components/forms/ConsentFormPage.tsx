@@ -68,9 +68,9 @@ export const ConsentFormPage = () => {
     defaultValues: {
       copyAccepted: false,
       copyDeclined: false,
-      informationRequested: 'Presence in program, Brief Summary of progress and participation In services at your facility. Please include dates of services.',
-      informationPurpose: 'COORDINATION OF SERVICES',
-      specificEvent: 'N/A',
+      informationRequested: '',
+      informationPurpose: '',
+      specificEvent: '',
     },
   });
 

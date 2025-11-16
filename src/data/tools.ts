@@ -22,36 +22,36 @@ export const tools = [{
   iconColor: 'bg-blue-500',
   isInternal: true
 }, {
-  name: 'Form1',
-  description: 'Access Form1 to submit and manage your information.',
+  name: 'Encounter Form',
+  description: 'Submit an individual encounter form to record participant interactions and services received.',
   url: '/form1',
   icon: FileText,
   iconColor: 'bg-purple-500',
   isInternal: true
 }, {
-  name: 'Form2',
-  description: 'Access Form2 to submit and manage your information.',
+  name: 'Individual Service Plan Form',
+  description: 'Create and manage recovery peer-based individualized service plans with goals, objectives, and monitoring criteria.',
   url: '/form2',
   icon: FileText,
   iconColor: 'bg-slate-500',
   isInternal: true
 }, {
-  name: 'Form3',
-  description: 'Access Form3 to submit and manage your information.',
+  name: 'Snap Assessment Form',
+  description: 'Complete a SNAP Assessment to evaluate strengths, needs, abilities, and preferences for service planning.',
   url: '/form3',
   icon: FileText,
   iconColor: 'bg-pink-500',
   isInternal: true
 }, {
-  name: 'Form4',
-  description: 'Access Form4 to submit and manage your information.',
+  name: 'Discharge Form',
+  description: 'Complete a Discharge Summary Form to record participant discharge information and aftercare planning.',
   url: '/form4',
   icon: FileText,
   iconColor: 'bg-blue-500',
   isInternal: true
 }, {
-  name: 'Form5',
-  description: 'Access Form5 to submit and manage your information.',
+  name: 'Wrap Plan Form',
+  description: 'Complete a Wellness Recovery Action Plan (WRAP) using the Traffic Light system for mental health planning.',
   url: '/form5',
   icon: FileText,
   iconColor: 'bg-purple-500',
