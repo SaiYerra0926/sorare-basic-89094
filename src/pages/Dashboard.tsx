@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 import { 
   Users,
   Search,
@@ -85,6 +86,7 @@ interface ReferralDetails {
 }
 
 const Dashboard = () => {
+  useScrollToTop();
   const [completedCount, setCompletedCount] = useState<number>(0);
   const [completedReferrals, setCompletedReferrals] = useState<CompletedReferral[]>([]);
   const [selectedReferral, setSelectedReferral] = useState<ReferralDetails | null>(null);

@@ -4,8 +4,11 @@ import { Home, BookOpen, BarChart3, Receipt } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { IndividualServicePlanForm } from '@/components/forms/IndividualServicePlanForm';
 import worxLogo from '@/assets/Worx-logo (2).png';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Form2 = () => {
+  useScrollToTop();
+  
   return (
     <>
       <Helmet>

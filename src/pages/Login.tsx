@@ -258,67 +258,37 @@ const Login = () => {
             boxShadow: '0 25px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
           }}
         >
-          {/* Animated Logo with enhanced effects */}
-          <div className="text-center mb-12">
-            <div 
-              className={`flex justify-center mb-6 transition-all duration-1000 ${
-                logoLoaded 
-                  ? 'opacity-100 scale-100' 
-                  : 'opacity-0 scale-90'
-              }`}
-              style={{
-                animation: logoLoaded ? 'logoFloat 4s ease-in-out infinite' : 'none'
-              }}
-            >
+          {/* Professional Logo */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-4">
               <div className="relative">
-                {/* Main logo with enhanced shadow */}
+                {/* Main logo - professional size */}
                 <img 
                   src={worxLogo} 
                   alt="The Worx Logo" 
-                  className="h-20 md:h-24 w-auto mx-auto"
+                  className="h-10 md:h-12 w-auto mx-auto"
                   style={{
-                    filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.2))',
-                    transition: 'all 0.3s ease'
+                    filter: 'drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08))',
+                    transition: 'opacity 0.3s ease'
                   }}
-                />
-                {/* Animated glow effect */}
-                <div 
-                  className="absolute inset-0 -z-10 blur-2xl opacity-40"
-                  style={{
-                    background: 'radial-gradient(circle, rgba(76, 175, 80, 0.5) 0%, transparent 70%)',
-                    transform: 'scale(1.3)',
-                    animation: 'glowPulse 3s ease-in-out infinite'
-                  }}
-                />
-                {/* Secondary subtle glow */}
-                <div 
-                  className="absolute inset-0 -z-10 blur-xl opacity-20"
-                  style={{
-                    background: 'radial-gradient(circle, rgba(139, 195, 74, 0.4) 0%, transparent 70%)',
-                    transform: 'scale(1.5)',
-                    animation: 'glowPulse 4s ease-in-out infinite reverse'
-                  }}
+                  onLoad={() => setLogoLoaded(true)}
                 />
               </div>
             </div>
             
             <h1 
-              className={`text-3xl md:text-4xl font-bold mb-2 transition-all duration-800 delay-200 ${
-                logoLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+              className="text-2xl md:text-3xl font-bold mb-2"
               style={{ 
                 fontFamily: 'Arial, Helvetica, sans-serif',
                 color: '#1a1a1a',
-                letterSpacing: '-0.02em',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+                letterSpacing: '-0.01em',
+                fontWeight: 600
               }}
             >
               Welcome Back
             </h1>
             <p 
-              className={`text-gray-600 text-base transition-all duration-800 delay-300 ${
-                logoLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+              className="text-gray-600 text-sm md:text-base"
               style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}
             >
               Sign in to access your account
@@ -728,17 +698,6 @@ const Login = () => {
           75% {
             transform: translate(50px, -40px) rotate(270deg) scale(1.1);
             opacity: 0.14;
-          }
-        }
-        
-        @keyframes logoFloat {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.2));
-          }
-          50% {
-            transform: translateY(-8px) scale(1.03);
-            filter: drop-shadow(0 12px 32px rgba(76, 175, 80, 0.3));
           }
         }
         

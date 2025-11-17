@@ -82,7 +82,7 @@ async function initUsersDatabase() {
     }
     
     // Hash passwords and insert default users
-    const adminPasswordHash = await bcrypt.hash('admin123', 10);
+    const adminPasswordHash = await bcrypt.hash('worx@123', 10);
     const userPasswordHash = await bcrypt.hash('user123', 10);
     
     // Insert admin user
@@ -139,9 +139,14 @@ async function initUsersDatabase() {
     
     console.log('✅ Users and permissions database initialized successfully!');
     console.log('Default credentials:');
-    console.log('  Admin: username=admin, password=admin123');
+    console.log('  Admin: username=admin, password=worx@123');
     console.log('  User: username=user, password=user123');
     console.log('⚠️  Please change these passwords in production!');
+    console.log('\n📝 Password Encryption:');
+    console.log('  Type: bcrypt (via bcryptjs library)');
+    console.log('  Salt Rounds: 10');
+    console.log('  Hash Format: $2b$10$... (bcrypt variant 2b)');
+    console.log('  Algorithm: Blowfish-based adaptive hashing');
     
     process.exit(0);
   } catch (error) {

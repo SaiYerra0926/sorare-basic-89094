@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { BookOpen, Home, BarChart3 } from 'lucide-react';
 import worxLogo from '@/assets/Worx-logo (2).png';
 import { ParticipantHandbookForm } from '@/components/forms/ParticipantHandbookForm';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Handbook = () => {
+  useScrollToTop();
+  
   return (
     <>
       <Helmet>

@@ -10,7 +10,7 @@ export const WorxLanding = () => {
   return <div 
     className="min-h-screen w-full flex flex-col"
     style={{
-      backgroundColor: '#FFFEF7'
+      backgroundColor: '#FFFEF0'
     }}
   >
       {/* Navigation */}
@@ -37,31 +37,36 @@ export const WorxLanding = () => {
           />
         </div>
         
-        {/* Hero Content - Exact Match to Reference Image */}
-        <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center max-w-3xl">
-          {/* Logo - Prominently Displayed */}
-          <div className="flex justify-center mb-8 md:mb-12 relative">
-            <img 
-              src={worxBannerLogo} 
-              alt="The Worx Banner Logo" 
-              className="w-full max-w-4xl h-auto rounded-2xl shadow-2xl relative z-10 transform hover:scale-[1.02] transition-transform duration-500"
-              style={{
-                filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3))'
-              }}
-            />
+        {/* Hero Content - Professional Alignment */}
+        <div className="relative z-10 container mx-auto px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            {/* Logo - Smaller and Professional */}
+            <div className="flex justify-center mb-8 md:mb-10 relative">
+              <img 
+                src={worxBannerLogo} 
+                alt="The Worx Banner Logo" 
+                className="w-full max-w-xl md:max-w-xl h-auto rounded-2xl shadow-2xl relative z-10 transform hover:scale-[1.02] transition-transform duration-500"
+                style={{
+                  filter: 'drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25))'
+                }}
+              />
+            </div>
+            
+            {/* Description Text - Content Only, No Card */}
+            <div className="max-w-4xl mx-auto">
+              <p 
+                className="text-base md:text-lg lg:text-xl leading-relaxed text-white font-normal text-left"
+                style={{
+                  fontFamily: "'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 400,
+                  letterSpacing: '0.01em',
+                  lineHeight: '1.8'
+                }}
+              >
+                The Worx! operates with a holistic approach, integrating physical, mental, and social health to support individuals in their recovery journey. By maintaining a continuum of care and fostering community partnerships, we ensure that services are streamlined and effective. Here are some of the additional resources and adjunct services available in the community that will strengthen our initiative and assist the individuals we serve.
+              </p>
+            </div>
           </div>
-          
-          {/* Description Text - White, Centered - Exact Font Match */}
-          <p 
-            className="text-sm md:text-base lg:text-lg text-white mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed"
-            style={{
-              fontFamily: "'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              fontWeight: 600,
-              letterSpacing: '0.01em'
-            }}
-          >
-            The Worx! operates with a holistic approach, integrating physical, mental, and social health to support individuals in their recovery journey. By maintaining a continuum of care and fostering community partnerships, we ensure that services are streamlined and effective. Here are some of the additional resources and adjunct services available in the community that will strengthen our initiative and assist the individuals we serve.
-          </p>
         </div>
       </section>
       
@@ -69,28 +74,41 @@ export const WorxLanding = () => {
       <div 
         className="w-full pb-24 flex-1"
         style={{
-          backgroundColor: '#F5F5DC'
+          backgroundColor: '#FFFEF0'
         }}
       >
-        <div className="container mx-auto px-6 lg:px-8">
-          {/* Forms Section - WhatsApp Booking Card Style */}
-          <section className="mb-16 md:mb-20 animate-fadeIn pt-12">
-            <div className="text-center mb-10 md:mb-12">
+        <div className="container mx-auto px-6 lg:px-8 py-8 md:py-12">
+          {/* Forms Section - Professional Alignment */}
+          <section className="mb-16 md:mb-20 animate-fadeIn">
+            <div className="max-w-5xl mx-auto mb-10 md:mb-12">
               <h2 
-                className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-3 text-gray-800"
-                style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}
+                className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 md:mb-8 tracking-tight leading-tight text-gray-800 text-center"
+                style={{ 
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.05)'
+                }}
               >
                 Forms & Resources
               </h2>
-              <p 
-                className="text-gray-700 text-sm md:text-base max-w-2xl mx-auto"
-                style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}
-              >
-                Access our comprehensive collection of forms and resources designed to support your recovery journey
-              </p>
+              <div className="max-w-4xl mx-auto">
+                <div className="rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200" style={{ backgroundColor: '#FFFEF0' }}>
+                  <p 
+                    className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 font-normal text-center"
+                    style={{
+                      fontFamily: "'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      fontWeight: 400,
+                      letterSpacing: '0.01em',
+                      lineHeight: '1.8'
+                    }}
+                  >
+                    Access our comprehensive collection of forms and resources designed to support your recovery journey
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
-            {tools.map((tool, index) => {
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 md:gap-5">
+                {tools.map((tool, index) => {
               const IconComponent = tool.icon;
 
               const content = (
@@ -140,7 +158,8 @@ export const WorxLanding = () => {
                   {content}
                 </Link>
               );
-            })}
+                })}
+              </div>
             </div>
           </section>
         </div>

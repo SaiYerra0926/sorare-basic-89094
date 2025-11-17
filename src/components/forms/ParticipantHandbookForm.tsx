@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import { SignaturePad } from '@/components/ui/signature-pad';
+import { useScrollToTop, scrollToTop } from '@/hooks/useScrollToTop';
 
 // Comprehensive schema for all 17 handbook forms
 const handbookSchema = z.object({
@@ -294,6 +295,9 @@ export const ParticipantHandbookForm = () => {
       staffModerateHighRiskActions: [],
     },
   });
+
+  // Scroll to top on mount and when step changes
+  useScrollToTop([currentStep]);
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
@@ -616,11 +620,13 @@ export const ParticipantHandbookForm = () => {
     const isValid = await form.trigger(fieldsToValidate);
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+      scrollToTop();
     }
   };
 
   const prevStep = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
+    scrollToTop();
   };
 
   const renderProgressIndicator = () => {

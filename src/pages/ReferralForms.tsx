@@ -4,8 +4,11 @@ import { Home, BookOpen, BarChart3, Receipt } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { RecoveryReferralForm } from '@/components/forms/RecoveryReferralForm';
 import worxLogo from '@/assets/Worx-logo (2).png';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const ReferralForms = () => {
+  useScrollToTop();
+  
   return (
     <>
       <Helmet>

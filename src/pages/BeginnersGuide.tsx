@@ -5,8 +5,11 @@ import worxLogo from '@/assets/Worx-logo (2).png';
 // Import the images
 import mentorImage from '@/assets/mentor-image.webp';
 import bottomsImage from '@/assets/bottoms-image.webp';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const BeginnersGuide = () => {
+  useScrollToTop();
+  
   return <>
       <Helmet>
         <title>The Worx - Complete Guide</title>
@@ -25,14 +28,14 @@ const BeginnersGuide = () => {
       <div 
         className="min-h-screen w-full flex flex-col"
         style={{
-          background: '#FFFEF7'
+          background: '#FFFEF0'
         }}
       >
         {/* Navigation */}
         <nav 
           className="sticky top-0 z-50"
           style={{
-            backgroundColor: '#FFFEF7',
+            backgroundColor: '#FFFEF0',
             borderBottom: 'none'
           }}
         >
@@ -88,14 +91,14 @@ const BeginnersGuide = () => {
 
         <main className="flex-1 animate-fadeIn">
           {/* Hero Images Section - Top of Page */}
-          <section className="w-full py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-white">
+          <section className="w-full py-8 md:py-12 lg:py-16" style={{ backgroundColor: '#FFFEF0' }}>
             <div className="container mx-auto px-6 lg:px-8">
               <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
                   {/* MENTOR Image Card */}
                   <div className="group relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300 opacity-20"></div>
-                    <div className="relative bg-white rounded-3xl shadow-2xl p-4 md:p-6 border-4 overflow-hidden transform group-hover:scale-[1.02] transition-all duration-300" style={{ borderColor: '#1e3a8a' }}>
+                    <div className="relative rounded-3xl shadow-2xl p-4 md:p-6 border-4 overflow-hidden transform group-hover:scale-[1.02] transition-all duration-300" style={{ borderColor: '#1e3a8a', backgroundColor: '#FFFEF0' }}>
                       <div className="absolute top-4 left-4 right-4 z-10">
                         <h2 
                           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-1"
@@ -144,7 +147,7 @@ const BeginnersGuide = () => {
                   {/* B.O.T.T.O.M.S Image Card */}
                   <div className="group relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-300 opacity-20"></div>
-                    <div className="relative bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 rounded-3xl shadow-2xl p-4 md:p-6 border-4 overflow-hidden transform group-hover:scale-[1.02] transition-all duration-300" style={{ borderColor: '#1e3a8a' }}>
+                    <div className="relative rounded-3xl shadow-2xl p-4 md:p-6 border-4 overflow-hidden transform group-hover:scale-[1.02] transition-all duration-300" style={{ borderColor: '#1e3a8a', backgroundColor: '#FFFEF0' }}>
                       <div className="absolute top-4 left-4 right-4 z-10">
                         <h2 
                           className="text-xl md:text-2xl lg:text-3xl font-bold mb-1"
@@ -204,7 +207,7 @@ const BeginnersGuide = () => {
                 Complete Guide about The Worx
               </h1>
               <div className="max-w-4xl mx-auto">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
+                <div className="rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200" style={{ backgroundColor: '#FFFEF0' }}>
                   <p 
                     className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 font-normal text-left"
                     style={{
@@ -223,7 +226,7 @@ const BeginnersGuide = () => {
           {/* What is The Worx Section */}
           <article className="py-12 md:py-16 lg:py-20 animate-fadeIn max-w-5xl mx-auto">
             <div className="mb-12 md:mb-16">
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 md:p-12 shadow-xl border-2 border-gray-200">
+              <div className="rounded-3xl p-8 md:p-12 shadow-xl border-2 border-gray-200" style={{ backgroundColor: '#FFFEF0' }}>
                 <h2 
                   className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 md:mb-8 tracking-tight text-gray-800 text-center"
                   style={{ 
@@ -252,7 +255,7 @@ const BeginnersGuide = () => {
 
           {/* MENTOR Core Values Section */}
           <section className="py-12 md:py-16 lg:py-20 animate-fadeIn max-w-7xl mx-auto">
-            <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 lg:p-14 border-4 overflow-hidden" style={{ borderColor: '#1e3a8a' }}>
+            <div className="rounded-3xl shadow-2xl p-6 md:p-10 lg:p-14 border-4 overflow-hidden" style={{ borderColor: '#1e3a8a', backgroundColor: '#FFFEF0' }}>
               <div className="text-center mb-10 md:mb-12">
                 <h2 
                   className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight"
@@ -306,7 +309,7 @@ const BeginnersGuide = () => {
 
           {/* B.O.T.T.O.M.S Services Section */}
           <section className="py-12 md:py-16 lg:py-20 animate-fadeIn max-w-7xl mx-auto">
-            <div className="bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 rounded-3xl shadow-2xl p-6 md:p-10 lg:p-14 border-4 overflow-hidden" style={{ borderColor: '#1e3a8a' }}>
+            <div className="rounded-3xl shadow-2xl p-6 md:p-10 lg:p-14 border-4 overflow-hidden" style={{ borderColor: '#1e3a8a', backgroundColor: '#FFFEF0' }}>
               <div className="text-center mb-10 md:mb-12">
                 <h2 
                   className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight"
@@ -340,7 +343,8 @@ const BeginnersGuide = () => {
                   ].map((service, index) => (
                     <div
                       key={index}
-                      className="bg-white/90 backdrop-blur-sm rounded-xl p-5 md:p-6 shadow-lg border-2 border-amber-200 group hover:border-amber-400 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                      className="rounded-xl p-5 md:p-6 shadow-lg border-2 border-amber-200 group hover:border-amber-400 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                      style={{ backgroundColor: '#FFFEF0' }}
                     >
                       <div className="flex items-start gap-4">
                         <span 

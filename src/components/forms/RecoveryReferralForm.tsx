@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import { SignaturePad } from '@/components/ui/signature-pad';
+import { useScrollToTop, scrollToTop } from '@/hooks/useScrollToTop';
 
 const formSchema = z.object({
   referralDate: z.string().min(1, 'Referral date is required'),
@@ -82,6 +83,9 @@ export const RecoveryReferralForm = () => {
     },
   });
 
+  // Scroll to top on mount and when step changes
+  useScrollToTop([currentStep]);
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
@@ -143,11 +147,13 @@ export const RecoveryReferralForm = () => {
     const isValid = await form.trigger(fieldsToValidate);
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+      scrollToTop();
     }
   };
 
   const prevStep = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
+    scrollToTop();
   };
 
   const renderProgressIndicator = () => {

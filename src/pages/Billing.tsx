@@ -1,8 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { Card } from '@/components/ui/card';
 import { Receipt } from 'lucide-react';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Billing = () => {
+  useScrollToTop();
+  
   return (
     <>
       <Helmet>
